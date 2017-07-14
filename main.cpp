@@ -24,7 +24,9 @@ bool mfpCompare(vector<double>a, vector<double> b){
 bool read_line(ifstream& ifs, stringstream& ss){
 	string line;
 	bool success = getline(ifs, line);
-//	line.erase(find(line.begin(), line.end(), '#'), line.end()); // erase anything after #
+	ss.clear();
+	cout << line << endl;
+	//line.erase(find(line.begin(), line.end(), '#'), line.end()); // erase anything after #
 	ss.str(line);
 	return success;
 }
@@ -237,7 +239,7 @@ int main(int argc, char** argv){
 					else if (sur[0] == 'H')
 						surface = HOLE;
 					else{
-						cerr<<"Surface type set incorrectly!";
+						cerr<<"Surface type " << sur <<" set incorrectly!"<<endl;
 						exit(1);
 					}
 					read_line(ifs, ss);
