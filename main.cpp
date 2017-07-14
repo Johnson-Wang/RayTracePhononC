@@ -105,16 +105,16 @@ int main(int argc, char** argv){
 		if (!read_line(ifs, ss)) break;
 		ss>>type;
 		if (type[0] == '#');
-		if(type=="LIGHT"){
+		else if(type=="LIGHT"){
 			isLight = true;
 			ss>>light.axis>>light.value>>light.direction;
 		}
-		if(type=="CAMERA"){
+		else if(type=="CAMERA"){
 			isCamera = true;
 			ss>>camera.axis>>camera.value>>camera.direction;
 		}
 
-		if(type == "OBJECTS") {
+		else if(type == "OBJECTS") {
 			isObject = true;
 			while(ifs.good()){
 				stringstream ss;
@@ -281,42 +281,46 @@ int main(int argc, char** argv){
 				}
 			}
 		}
-		if (type == "MFPFILE")
+		else if (type == "MFPFILE")
 		{
 			isMFPFile = true;
 			ss>>mfpfile;
 		}
-		if (type == "MFP"){
+		else if (type == "MFP"){
 			isMFP = true;
 			ss >> mfp;
 		}
-		if (type == "MFPSEG")
+		else if (type == "MFPSEG")
 		{
 			isNSeg = true;
 			ss>>mfpseg;
 		}
-		if (type == "NPHONON")
+		else if (type == "NPHONON")
 		{
 			isNPhonon = true;
 
 			ss>>nPhonon;
 		}
-		if (type == "TOLERANCE")
+		else if (type == "TOLERANCE")
 		{
 			ss>>tolerance;
 		}
 
-		if (type == "CAMERARATIO") //MINIMUM CAMERA DISTANCE (in regards to mfp)
+		else if (type == "CAMERARATIO") //MINIMUM CAMERA DISTANCE (in regards to mfp)
 		{
 			ss>>minCameraDistance;
 		}
-		if (type == "CAMERAMAX")
+		else if (type == "CAMERAMAX")
 		{
 			ss>>cameraMax;
 		}
 
-		if(type == "CUT"){
+		else if(type == "CUT"){
 			break;
+		}
+		else {
+			cerr << "type " << type << " not recognizable!"<<endl;
+			return 1;
 		}
 	}
 	ifs.close();
