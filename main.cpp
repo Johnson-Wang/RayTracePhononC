@@ -376,8 +376,10 @@ int main(int argc, char** argv){
 		double cameratolight = camera.value - light.value;
 		if (fabs(cameratolight) < mfp * minCameraDistance){
 			int ratio = (int) (mfp*minCameraDistance / cameratolight);
-			if (ratio > 1 && fabs(cameratolight) <= cameraMax )
+			int ratio2 = (int) (cameraMax / cameratolight);
+			if (abs(ratio) > 1 && abs(ratio2) > 0)
 			{
+				ratio = (abs(ratio) < abs(ratio2)? ratio:ratio2);
 				camera.value = light.value + cameratolight * ratio;
 				cout << "Increased the camera-light distance to: " << (camera.value - light.value) <<endl;
 			}
